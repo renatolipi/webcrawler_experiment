@@ -6,5 +6,4 @@ RUN pip install -U pip
 COPY . /app
 WORKDIR /app
 RUN pip install -r requirements.txt
-ENTRYPOINT ["python"]
-CMD ["app.py"]
+ENTRYPOINT ["gunicorn", "-w 2",  "-b 0.0.0.0:8088", "app:app"]
