@@ -18,7 +18,6 @@ It's recommended to use a virtualenv. Create one and activate it.
 
 
 
-
 ## How to run?
 
 Clone this repo, then go to its main folder (where you'll find `app.py`):
@@ -43,6 +42,10 @@ Clone this repo, then go to its main folder (where you'll find `app.py`):
   Then, run:
 
   `python app.py`
+
+  or
+
+  `gunicorn -w 2 -b 0.0.0.0:8088 app:app`
 
 
 
