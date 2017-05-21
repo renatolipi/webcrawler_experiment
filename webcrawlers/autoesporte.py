@@ -41,6 +41,13 @@ class AutoEsporteWC(object):
         return description
 
     def _jsonify_content(self, content):
+        def _extract_link(item):
+            # TODO: handle this correctly
+            try:
+                return item.link.string or str(item.link.nextSibling).strip()
+            except Exception:
+                return ''
+
         feed_list = []
 
         parsed_content = BS(content, "html.parser")
@@ -50,7 +57,7 @@ class AutoEsporteWC(object):
             inner_data = BS(item.description.string, "html.parser")
             json_item = {
                 'title': item.title.string or '',
-                'link': item.link.string or '',
+                'link': _extract_link(item),
                 'description': self._get_content_description(inner_data)
             }
             feed_list.append({'item': json_item})
