@@ -14,7 +14,7 @@ class AutoEsporteWC(object):
         if response.status_code == 200:
             return response.content
 
-        return None
+        return {}
 
     def _get_content_description(self, inner_data):
         def _get_links_list(inner_data):
