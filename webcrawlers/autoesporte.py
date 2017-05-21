@@ -19,8 +19,7 @@ class AutoEsporteWC(object):
     def _get_content_description(self, inner_data):
         def _get_links_list(inner_data):
             links = inner_data.find_all('a')
-            # return [link.get('href') for link in links]
-            return []
+            return [link.get('href') for link in links]
 
         def _get_p_list(inner_data):
             texts = inner_data.find_all('p')
@@ -29,19 +28,16 @@ class AutoEsporteWC(object):
 
         def _get_img_list(inner_data):
             images = inner_data.find_all('img')
-            # return [image.get('src') for image in images]
-            return []
+            return [image.get('src') for image in images]
 
-        description = []
-
-        # 'description'= [
-        #     {'type': 'text',
-        #      'content': _get_p_list(inner_data)},
-        #     {'type': 'image',
-        #      'content': _get_img_list(inner_data)},
-        #     {'type': 'links',
-        #      'content': _get_links_list(inner_data)}
-        # ]
+        description = [
+            {'type': 'text',
+             'content': _get_p_list(inner_data)},
+            {'type': 'image',
+             'content': _get_img_list(inner_data)},
+            {'type': 'links',
+             'content': _get_links_list(inner_data)}
+        ]
         return description
 
     def _jsonify_content(self, content):
